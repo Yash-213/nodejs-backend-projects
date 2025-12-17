@@ -5,6 +5,11 @@ const app = express();
 app.use(express.json());
 const User = require("./models/User");
 
+const cors = require("cors");
+app.use(cors({
+  origin: "http://localhost:3000"
+}));
+
 mongoose.connect(process.env.MONGO_URL)
     .then(() => {
         console.log("MongoDB connected");
