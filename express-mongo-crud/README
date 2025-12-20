@@ -1,0 +1,24 @@
+Express Mongo CRUD API
+
+This is a backend REST API built using Express and MongoDB.
+It allows users to create, read, update, and delete user data.
+
+Tech Stack
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+
+
+Features
+- Create new users
+- Fetch all users
+- Update user details
+- Delete users
+
+How to run locally
+
+1. Clone the repository
+2. Run npm install
+3. Create a .env file and add MONGO_URL
+4. Run npm start
