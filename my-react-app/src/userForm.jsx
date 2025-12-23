@@ -38,14 +38,22 @@ function UserForm({ onUserAdded }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+  <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md space-y-4"
+    >
+      <h2 className="text-xl font-semibold text-center">Add New User</h2>
+
       <input
+        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
       <input
+        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -53,14 +61,18 @@ function UserForm({ onUserAdded }) {
 
       <input
         type="number"
+        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         placeholder="Age (optional)"
         value={age}
         onChange={(e) => setAge(e.target.value)}
       />
 
-      <button>Add User</button>
+      <button className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">
+        Add User
+      </button>
     </form>
-  );
+  </div>
+);
 }
 
 export default UserForm;
