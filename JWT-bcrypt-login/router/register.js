@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
+const authMiddleware = require("../middleware/auth");
 
 router.post("/register", async (req, res) => {
     try {
@@ -60,5 +61,15 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.get("/home", (req, res) => {
+    res.json({message: "This Home Page..."});
+})
 
-module.exports = router
+router.get("/dashboard", authMiddleware,(req, res) => {
+    res.json({
+        message: "This dashboard...",
+        userId: req.user.userId
+    })
+})
+
+module.exports = router;
