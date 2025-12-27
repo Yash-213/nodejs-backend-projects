@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
+const { generateUsernameSuggetions, generateHelpText } = require("../services/aiService");
 const authMiddleware = require("../middleware/auth");
 
 router.post("/register", async (req, res) => {
@@ -72,4 +73,26 @@ router.get("/dashboard", authMiddleware,(req, res) => {
     })
 })
 
+router.post("/ai-suggest-username", (req, res) =>{
+    const {name, interest} = req.body;
+
+    if(!name || !interest){
+        return res.status(400).json({message: "Name and Interest required.."});
+    }
+    const suggestion = generateUsernameSuggetions(name, interest);
+
+    res.json(suggestion);
+});
+
+router.post("/ai-help-text", (req, res) =>{
+    const {question} = req.body;
+
+    if(!question){
+        return res.status(400).json({message: "Ask any Question"});
+    }
+
+    const suggest = generateHelpText(question);
+
+    res.json(suggest);
+})
 module.exports = router;
